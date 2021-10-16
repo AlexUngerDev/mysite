@@ -26,7 +26,7 @@ DATABASES = {
         'NAME': 'mydb',
         'USER': 'myuser',
         'PASSWORD': '1',
-        'HOST': environ.get('PG_HOST', default='192.168.17.15'),
+        'HOST': environ.get('PG_HOST!!!', default='192.168.17.15'),
         'PORT': '',
     }
 }

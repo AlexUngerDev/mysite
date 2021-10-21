@@ -23,10 +23,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'mydb',
-        'USER': 'myuser',
-        'PASSWORD': '1',
-        'HOST': environ.get('PG_HOST!!!', default='192.168.17.15'),
+        'NAME': environ.get('PG_DBNAME', default='mydb'),
+        'USER': environ.get('PG_USER', default='myuser'),
+        'PASSWORD': environ.get('PG_PASS', default='1'),
+        'HOST': environ.get('PG_HOST', default='localhost'),
         'PORT': '',
     }
 }

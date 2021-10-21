@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysite
+  namespace: mysite
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      bb: web
+  template:
+    metadata:
+      labels:
+        bb: web
+    spec:
+      initContainers:
+      - name: migrations
+        image: alexunger/mysite:DOCKERTAG
+        command: ["python"]
+        args: ["manage.py", "migrate"]
+        env:
+          - name: PG_HOST
+            value: postgres
+      containers:
+      - name: main
+        image: alexunger/mysite:DOCKERTAG
+        env:
+          - name: PG_HOST
+            value: postgres

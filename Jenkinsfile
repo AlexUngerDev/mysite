@@ -2,6 +2,7 @@
         agent any
         environment {
             DOCKER_HOST = '172.17.0.1'
+            VERSION=sh(returnStdout: true, script: '''cat mysite/__init__.py | grep __version__ | cut -d '=' -f2 | cut -c 2- | cut -c -3''')
         }
         stages {
             stage('clone') {

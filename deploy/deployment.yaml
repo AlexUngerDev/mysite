@@ -15,7 +15,7 @@ spec:
     spec:
       initContainers:
       - name: migrations
-        image: alexunger/mysite:1.0
+        image: alexunger/mysite:1.0.1
         command: ["python"]
         args: ["manage.py", "migrate"]
         env:
@@ -23,7 +23,7 @@ spec:
             value: postgres
       containers:
       - name: main
-        image: alexunger/mysite:1.0
+        image: alexunger/mysite:1.0.1
         env:
           - name: PG_HOST
             value: postgres

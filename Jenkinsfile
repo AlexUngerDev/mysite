@@ -15,14 +15,14 @@
             stage('build') {
                 steps {
                     sh 'echo version is $VERSION'
-                    sh 'docker build -t alexunger/mysite:$VERSION .'
+                    sh 'sudo docker build --network common -t alexunger/mysite:$VERSION .'
                 }
             }
             stage('push') {
                 steps {
                     withCredentials([usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASSWORD')]) {
-                        sh 'docker login -u $DOCKER_USER -p $DOCKER_PASSWORD'
-                        sh 'docker push alexunger/mysite:$VERSION'
+                        sh 'sudo docker login -u $DOCKER_USER -p $DOCKER_PASSWORD'
+                        sh 'sudo docker push alexunger/mysite:$VERSION'
                     }
                 }
             }
